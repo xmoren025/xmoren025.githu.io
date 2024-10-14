@@ -1,6 +1,7 @@
 
 body {
     background-color: rgb(214, 235, 255);
+    font-family: Arial, sans-serif;
 }
 
 fieldset{
@@ -68,7 +69,7 @@ img{
     color: #2c2c2c;
 }
 
-.info-producto button {
+button {
     background-color: #e91e84;
     color: white;
     border: none;
