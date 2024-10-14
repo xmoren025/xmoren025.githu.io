@@ -53,18 +53,18 @@ img{
     gap: 8px;
 }
 
-.info-producto h2 {
+h2 {
     font-size: 18px;
     margin: 10px 0;
 }
 
-.info-producto h3 {
+h3 {
     font-size: 16px;
     color: #e91e84;
     margin-bottom: 10px;
 }
 
-.info-producto p {
+p {
     font-size: 14px;
     color: #2c2c2c;
 }
