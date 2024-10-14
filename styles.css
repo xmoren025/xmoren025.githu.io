@@ -1,5 +1,8 @@
-menu{
+.menu{
     background-color: #e91e84;
+    padding: 10px 0;
+    margin: 0;
+    width: 100%; 
 }
 .menu ul {
     list-style: none;
