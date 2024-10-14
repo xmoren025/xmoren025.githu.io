@@ -1,7 +1,6 @@
 
 body {
     background-color: beige;
-    background-size: cover;
 }
 
 fieldset{
@@ -39,4 +38,12 @@ img{
     object-fit: cover;
     border-radius: 10px 10px 0 0;
     transition: all .5s;
+}
+
+.info-producto{
+    padding: 15px 30px;
+    line-height: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
