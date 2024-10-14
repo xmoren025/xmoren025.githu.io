@@ -112,6 +112,20 @@ img{
     gap: 8px;
 }
 
+.Producto h4 {
+    margin-top: 20px; 
+    color: #e91e84; 
+}
+
+.Producto ul {
+    padding-left: 20px; 
+}
+
+.Producto li {
+    margin-bottom: 5px; 
+    color: #383838; 
+}
+
 h1 {
     text-align: center; 
     color: #2c2c2c; 
