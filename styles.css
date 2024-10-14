@@ -1,3 +1,4 @@
+/* MENÚ */
 .menu{
     background-color: #e91e84;
     padding: 10px 0;
@@ -23,21 +24,12 @@
     transition: color 0.3s ease;
 }
 
+/* GENERAL */
+
 body {
     background-color: rgb(214, 235, 255);
     font-family: Arial, sans-serif;
 }
-
-.catalogo {
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px; 
-    max-width: 1200px;
-    margin: auto; 
-}
-
-
 
 fieldset{
     border: 1px solid #ddd;
@@ -57,10 +49,6 @@ a {
     color: #e91e84; 
     text-decoration: none; 
     font-size: 14px; 
-}
-
-.remember-me {
-    margin-top: 10px; 
 }
 
 input[type="submit"] {
@@ -85,6 +73,44 @@ img{
     margin-bottom: 15px;
 }
 
+h1 {
+    text-align: center; 
+    color: #2c2c2c; 
+    margin-bottom: 20px;
+}
+
+
+h2 {
+    font-size: 18px;
+    margin: 8px 0;
+}
+
+h3 {
+    font-size: 16px;
+    color: #e91e84;
+    margin-bottom: 6px;
+}
+
+p {
+    font-size: 14px;
+    color: #2c2c2c;
+}
+
+hr{
+    color: #e91e84;
+}
+
+
+/* CATALOGO & PRODUCTOS */
+
+.catalogo {
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px; 
+    max-width: 1200px;
+    margin: auto; 
+}
 
 
 .producto {
@@ -128,33 +154,12 @@ img{
     color: #383838; 
 }
 
-h1 {
-    text-align: center; 
-    color: #2c2c2c; 
-    margin-bottom: 20px;
+
+/* EXTRA (REGISTRAR) */
+
+.remember-me {
+    margin-top: 10px; 
 }
-
-
-h2 {
-    font-size: 18px;
-    margin: 8px 0;
-}
-
-h3 {
-    font-size: 16px;
-    color: #e91e84;
-    margin-bottom: 6px;
-}
-
-p {
-    font-size: 14px;
-    color: #2c2c2c;
-}
-
-hr{
-    color: #e91e84;
-}
-
 
 
 
