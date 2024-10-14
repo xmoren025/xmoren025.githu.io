@@ -1,10 +1,10 @@
 
 body {
-    background-color: beige;
+    background-color: rgb(172, 237, 244);
 }
 
 fieldset{
-    width: 500px;
+    width: 400px;
 }
 
 
@@ -41,6 +41,7 @@ img{
 }
 
 .info-producto{
+    background-color: rgb(232, 232, 232);
     padding: 15px 30px;
     line-height: 2;
     display: flex;
