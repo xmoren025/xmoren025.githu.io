@@ -7,3 +7,25 @@ img {
     width: 300px;   
     height: auto; 
 }
+
+
+.producto {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: #333;
+}
+
+.producto img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
+}
+
+.producto p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #555;
+}
