@@ -2,3 +2,8 @@ body {
     background-image: url('img/fondo.jpg');
     background-size: cover;
 }
+
+img {
+    width: 300px;   
+    height: auto; 
+}
