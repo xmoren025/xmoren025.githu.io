@@ -40,10 +40,28 @@ body {
 
 
 fieldset{
-    width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px; 
+    background-color: white; 
+    box-shadow: 0 2px 5px  #e44b972b;
 }
 
+legend {
+    font-weight: bold;
+    font-size: 18px; 
+    margin-bottom: 10px; 
+}
 
+a {
+    color: #e91e84; 
+    text-decoration: none; 
+    font-size: 14px; 
+}
+
+.remember-me {
+    margin-top: 10px; 
+}
 
 img{
     width: 100%;
@@ -82,6 +100,13 @@ img{
     gap: 8px;
 }
 
+h1 {
+    text-align: center; 
+    color: #2c2c2c; 
+    margin-bottom: 20px;
+}
+
+
 h2 {
     font-size: 18px;
     margin: 8px 0;
@@ -98,6 +123,10 @@ p {
     color: #2c2c2c;
 }
 
+hr{
+    color: #e91e84;
+}
+
 button {
     background-color: #e91e84;
     color: white;
@@ -109,3 +138,5 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+
+
