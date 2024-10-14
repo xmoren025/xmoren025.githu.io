@@ -1,6 +1,6 @@
 
 body {
-    background-color: rgb(172, 237, 244);
+    background-color: rgb(188, 220, 250);
 }
 
 fieldset{
@@ -17,6 +17,34 @@ img{
     transition: all .5s;
 }
 
+button {
+    background-color: #e91e84;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+h3 {
+    font-size: 16px;
+    color: #e91e84;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 14px;
+    color: #2c2c2c;
+}
+
 .catalogo {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -25,7 +53,9 @@ img{
 
 
 .producto{
-    border-radius: 10px;
+    border-radius: 8px;
+    background-color: rgb(232, 232, 232);
+
 }
 
 .producto:hover{
@@ -41,10 +71,9 @@ img{
 }
 
 .info-producto{
-    background-color: rgb(232, 232, 232);
     padding: 15px 30px;
-    line-height: 2;
+    line-height: 1.5;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
