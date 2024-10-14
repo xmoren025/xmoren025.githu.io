@@ -20,13 +20,6 @@ img{
 
 
 
-.catalogo {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-
 .producto{
     border-radius: 8px;
     background-color:rgb(244, 249, 254);
@@ -55,13 +48,13 @@ img{
 
 h2 {
     font-size: 18px;
-    margin: 10px 0;
+    margin: 8px 0;
 }
 
 h3 {
     font-size: 16px;
     color: #e91e84;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 p {
