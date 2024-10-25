@@ -27,12 +27,12 @@ selectBtnN.onclick = () => {
 
 let player1Icon = "./img/maki.png";
 let player2Icon = "./img/nigiri.png";
-let playerSign = "M";
+let playerSign = "Maki";
 let runBot = true;
 
 function clickedBox(element) {
     if (players.classList.contains("player")) {
-        playerSign = "N";
+        playerSign = "Nigiri";
         element.innerHTML = `<img src="${player2Icon}" alt="Nigiri" style="width: 100%;">`;
         players.classList.remove("active");
         element.setAttribute("id", playerSign);
@@ -54,7 +54,7 @@ function clickedBox(element) {
 function bot() {
     let array = [];
     if (runBot) {
-        playerSign = "N";
+        playerSign = "Nigiri";
         for (let i = 0; i < allBox.length; i++) {
             if (allBox[i].childElementCount == 0) {
                 array.push(i);
@@ -63,7 +63,7 @@ function bot() {
         let randomBox = array[Math.floor(Math.random() * array.length)];
         if (array.length > 0) {
             if (players.classList.contains("player")) {
-                playerSign = "M";
+                playerSign = "Maki";
                 allBox[randomBox].innerHTML = `<img src="${player1Icon}" alt="Maki" style="width: 100%;">`;
                 allBox[randomBox].setAttribute("id", playerSign);
                 players.classList.add("active");
@@ -76,7 +76,7 @@ function bot() {
         }
         allBox[randomBox].style.pointerEvents = "none";
         playBoard.style.pointerEvents = "auto";
-        playerSign = "M";
+        playerSign = "Maki";
     }
 }
 

@@ -2,92 +2,117 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Arial', sans-serif;
 }
 
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     min-height: 100vh;
-    background-color: #4d4437;
-}
-
-.select-box {
-    width: 320px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.select-box .options {
-    margin: 10px 0;
-    padding: 10px;
-    background: #f9f9f9;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
+    background: linear-gradient(135deg, #ffb3b3, #ff7373);
     color: #333;
 }
 
-.select-box .options:hover {
-    background: #f1f1f1;
-}
-
-.hide {
-    display: none;
-}
-
-.show {
-    display: block;
-}
-
-.table {
+/* Team Selector */
+.team-selector {
+    text-align: center;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
     width: 320px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 5px;
 }
 
-.table span {
-    width: 100%;
-    height: 100px;
-    background-color: #fff;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
+.team-selector header {
+    font-size: 1.5rem;
     font-weight: bold;
-    cursor: pointer;
+    color: #ff7373;
+    margin-bottom: 15px;
 }
 
-.table span:hover {
-    background-color: #f9f9f9;
-    transform: scale(1.05);
+.team-selector .title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.team-selector .options button {
+    background: #ff7373;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.team-selector .options button:hover {
+    background: #ff4c4c;
+}
+
+/* Table */
+.table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 320px;
+    gap: 10px;
 }
 
 .players {
     display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #ff7373;
+}
+
+.play-area {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.play-area section {
+    display: flex;
+}
+
+.play-area span {
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    margin: 20px 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ff7373;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
 }
 
-.players.active.player {
-    color: #ff6b6b;
+.play-area span:hover {
+    background-color: #ffebeb;
+    transform: scale(1.05);
 }
 
+/* Result Box */
 .result-box {
     display: none;
     width: 320px;
     padding: 20px;
     background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin-top: 20px;
 }
 
 .result-box.show {
@@ -95,28 +120,24 @@ body {
 }
 
 .won-text {
-    font-size: 24px;
+    font-size: 1.4rem;
     font-weight: bold;
-    margin: 20px 0;
+    color: #ff7373;
+    margin-bottom: 15px;
 }
 
-.result-box button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #4caf50;
+.result-box .btn button {
+    background: #ff7373;
     color: #fff;
+    border: none;
+    padding: 10px 20px;
     border-radius: 5px;
+    font-size: 1rem;
     cursor: pointer;
-    font-weight: bold;
+    transition: background 0.3s;
 }
 
-.result-box button:hover {
-    background-color: #45a049;
+.result-box .btn button:hover {
+    background: #ff4c4c;
 }
 
-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    pointer-events: none;
-}
