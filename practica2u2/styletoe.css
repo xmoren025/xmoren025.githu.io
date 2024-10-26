@@ -1,143 +1,119 @@
-/* Resetting basic styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 body {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #ffb3b3, #c57f2a);
-    color: #333;
-}
-
-/* Team Selector */
-.team-selector {
-    text-align: center;
-    padding: 20px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    width: 320px;
-}
-
-.team-selector header {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #ff7373;
-    margin-bottom: 15px;
-}
-
-.team-selector .title {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-
-.team-selector .options button {
-    background: #ff7373;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    margin: 0 5px;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.team-selector .options button:hover {
-    background: #ff4c4c;
-}
-
-/* Table */
-.table {
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 320px;
-    gap: 10px;
+    min-height: 100vh;
+    background: linear-gradient(to right,  #8ad8f0, #e5548e); 
 }
 
-.players {
+section {
     display: flex;
-    justify-content: space-around;
-    width: 100%;
-    margin-bottom: 10px;
-    font-weight: bold;
-    font-size: 1rem;
-    color: #ff7373;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.play-area {
+.game--title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #cd3064; 
+    text-align: center;
+}
+
+.game--container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 5px;
+    margin-bottom: 20px;
 }
 
-.play-area section {
-    display: flex;
-}
-
-.play-area span {
+.cell {
     width: 100px;
     height: 100px;
-    background: #fff;
-    border-radius: 10px;
+    background-color: #f0f0f0; 
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: bold;
-    color: #ff7373;
     cursor: pointer;
-    transition: background 0.3s, transform 0.3s;
+    transition: background-color 0.2s ease;
 }
 
-.play-area span:hover {
-    background-color: #ffebeb;
-    transform: scale(1.05);
+.cell:hover {
+    background-color: #c1e8f3; 
 }
 
-/* Result Box */
-.result-box {
-    display: none;
-    width: 320px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+.game--status {
+    font-size: 1.2rem;
+    color: #484848; 
+    margin-bottom: 10px;
     text-align: center;
-    margin-top: 20px;
 }
 
-.result-box.show {
-    display: block;
-}
-
-.won-text {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #ff7373;
-    margin-bottom: 15px;
-}
-
-.result-box .btn button {
-    background: #ff7373;
-    color: #fff;
-    border: none;
+.game--restart {
     padding: 10px 20px;
-    border-radius: 5px;
     font-size: 1rem;
+    color: #ffffff;
+    background-color: #cd3064; 
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background-color 0.2s ease;
+    margin-top: 10px; 
 }
 
-.result-box .btn button:hover {
-    background: #ff4c4c;
+.game--restart:hover {
+    background-color: #3ba7d9; 
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#scoreList {
+    list-style-type: none;
+    padding: 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#scoreList li {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+}
+
+#scoreList li:last-child {
+    border-bottom: none;
+}
+
+#scoreList li:nth-child(1) {
+    background: linear-gradient(to right, #facb53df, #ffeab4);
+    font-weight: bold;
+}
+
+#scoreList li:nth-child(2) {
+    background: linear-gradient(to right, #d4d4d3d6, #f9f8f8);
+}
+
+#scoreList li:nth-child(3) {
+    background: linear-gradient(to right, #f09a45e4, #fbcd9f);
+
 }

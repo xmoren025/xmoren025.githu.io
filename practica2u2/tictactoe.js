@@ -1,117 +1,130 @@
-const selectBox = document.querySelector(".team-selector"); 
-const selectBtnM = selectBox.querySelector(".player1");
-const selectBtnN = selectBox.querySelector(".player2");
-const playBoard = document.querySelector(".table");
-const players = document.querySelector(".players");
-const allBox = document.querySelectorAll("section span");
-const resultBox = document.querySelector(".result-box");
-const wonText = resultBox.querySelector(".won-text");
-const replayBtn = resultBox.querySelector("button");
+let currentPlayer = "";
+let userSymbol = "";
+let botSymbol = "";
+let startTime = 0;
+const winningCombinations = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+    [0, 4, 8], [2, 4, 6]
+];
+let gameBoard = ["", "", "", "", "", "", "", "", ""];
+let gameActive = true;
 
-window.onload = () => {
-    for (let i = 0; i < allBox.length; i++) {
-        allBox[i].setAttribute("onclick", "clickedBox(this)");
+const statusDisplay = document.querySelector('.game--status');
+const cells = document.querySelectorAll('.cell');
+const restartButton = document.querySelector('.game--restart');
+const scoreList = document.getElementById('scoreList');
+
+function initializeGame() {
+    userSymbol = prompt("Elige tu símbolo: X o O").toUpperCase();
+    while (userSymbol !== 'X' && userSymbol !== 'O') {
+        userSymbol = prompt("Símbolo inválido. Elige X o O:").toUpperCase();
+    }
+    botSymbol = userSymbol === "X" ? "O" : "X";
+    currentPlayer = userSymbol;
+    startTime = Date.now();
+    gameBoard.fill("");
+    gameActive = true;
+    statusDisplay.innerHTML = `Turno de: ${currentPlayer}`;
+    cells.forEach(cell => (cell.innerHTML = ""));
+    updateBestTimesDisplay();
+}
+
+function handleCellClick(event) {
+    const cellIndex = parseInt(event.target.getAttribute("data-cell-index"));
+    if (gameBoard[cellIndex] !== "" || !gameActive) return;
+
+    gameBoard[cellIndex] = currentPlayer;
+    event.target.innerHTML = currentPlayer;
+
+    handleResultValidation();
+
+    if (gameActive) {
+        currentPlayer = currentPlayer === userSymbol ? botSymbol : userSymbol;
+        statusDisplay.innerHTML = `Turno de: ${currentPlayer}`;
+        if (currentPlayer === botSymbol) botMove();
     }
 }
 
-selectBtnM.onclick = () => {
-    selectBox.classList.add("hide");
-    playBoard.classList.add("show");
-}
-
-selectBtnN.onclick = () => {
-    selectBox.classList.add("hide");
-    playBoard.classList.add("show");
-    players.setAttribute("class", "players active player");
-}
-
-let player1Icon = "./img/maki.png";
-let player2Icon = "./img/nigiri.png";
-let playerSign = "Maki";
-let runBot = true;
-
-function clickedBox(element) {
-    if (players.classList.contains("player")) {
-        playerSign = "Nigiri";
-        element.innerHTML = `<img src="${player2Icon}" alt="Nigiri" style="width: 100%;">`;
-        players.classList.remove("active");
-        element.setAttribute("id", playerSign);
-    } else {
-        element.innerHTML = `<img src="${player1Icon}" alt="Maki" style="width: 100%;">`;
-        element.setAttribute("id", playerSign);
-        players.classList.add("active");
+function handleResultValidation() {
+    let roundWon = false;
+    for (const condition of winningCombinations) {
+        const [a, b, c] = condition;
+        if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
+            roundWon = true;
+            break;
+        }
     }
-    selectWinner();
-    element.style.pointerEvents = "none";
-    playBoard.style.pointerEvents = "none";
 
-    let randomTimeDelay = ((Math.random() * 1000) + 200).toFixed();
+    if (roundWon) {
+        gameActive = false;
+        if (currentPlayer === userSymbol) {
+            statusDisplay.innerHTML = `¡Ganaste! 🎉`;
+            registerBestTime();
+        } else {
+            statusDisplay.innerHTML = `¡El bot ganó! 🤖`;
+        }
+    } else if (!gameBoard.includes("")) {
+        gameActive = false;
+        statusDisplay.innerHTML = `¡Empate!`;
+    }
+}
+
+function botMove() {
+    let emptyCells = gameBoard.map((value, index) => (value === "" ? index : null)).filter(val => val !== null);
+
+    // Selecciona un índice aleatorio entre las celdas vacías
+    const randomIndex = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+
+    cells.forEach(cell => {
+        cell.style.pointerEvents = 'none'; 
+    });
+
     setTimeout(() => {
-        bot(runBot);
-    }, randomTimeDelay);
-}
+        gameBoard[randomIndex] = botSymbol; 
+        cells[randomIndex].innerHTML = botSymbol; 
+        handleResultValidation(); 
 
-function bot() {
-    let array = [];
-    if (runBot) {
-        playerSign = "Nigiri";
-        for (let i = 0; i < allBox.length; i++) {
-            if (allBox[i].childElementCount == 0) {
-                array.push(i);
-            }
+        cells.forEach(cell => {
+            cell.style.pointerEvents = 'auto';
+        });
+
+        if (gameActive) {
+            currentPlayer = userSymbol; 
+            statusDisplay.innerHTML = `Turno de: ${currentPlayer}`; 
         }
-        let randomBox = array[Math.floor(Math.random() * array.length)];
-        if (array.length > 0) {
-            if (players.classList.contains("player")) {
-                playerSign = "Maki";
-                allBox[randomBox].innerHTML = `<img src="${player1Icon}" alt="Maki" style="width: 100%;">`;
-                allBox[randomBox].setAttribute("id", playerSign);
-                players.classList.add("active");
-            } else {
-                allBox[randomBox].innerHTML = `<img src="${player2Icon}" alt="Nigiri" style="width: 100%;">`;
-                players.classList.remove("active");
-                allBox[randomBox].setAttribute("id", playerSign);
-            }
-            selectWinner();
-        }
-        allBox[randomBox].style.pointerEvents = "none";
-        playBoard.style.pointerEvents = "auto";
-        playerSign = "Maki";
-    }
+    }, 1000); 
 }
 
-function getIdVal(classname) {
-    return document.querySelector(".box" + classname).id;
+// Lista de top 10
+function registerBestTime() {
+    const playerName = prompt("¡Ganaste! Ingresa tu nombre:");
+    if (!playerName) return;
+    const timeTaken = ((Date.now() - startTime) / 1000).toFixed(2);
+
+    let bestTimes = JSON.parse(localStorage.getItem('bestTimes')) || [];
+    bestTimes.push({ name: playerName, time: timeTaken, date: new Date().toISOString() });
+
+    bestTimes.sort((a, b) => a.time - b.time);
+    bestTimes = bestTimes.slice(0, 10);
+
+    localStorage.setItem('bestTimes', JSON.stringify(bestTimes));
+    updateBestTimesDisplay();
 }
 
-function checkIdSign(val1, val2, val3, sign) {
-    if (getIdVal(val1) == sign && getIdVal(val2) == sign && getIdVal(val3) == sign) {
-        return true;
-    }
+
+function updateBestTimesDisplay() {
+    scoreList.innerHTML = "";
+    const bestTimes = JSON.parse(localStorage.getItem('bestTimes')) || [];
+
+    bestTimes.forEach((score, index) => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `${index + 1}. ${score.name} - ${score.time} segundos - ${new Date(score.date).toLocaleString()}`;
+        scoreList.appendChild(listItem);
+    });
 }
 
-function selectWinner() {
-    if (checkIdSign(1, 2, 3, playerSign) || checkIdSign(4, 5, 6, playerSign) || checkIdSign(7, 8, 9, playerSign) || checkIdSign(1, 4, 7, playerSign) || checkIdSign(2, 5, 8, playerSign) || checkIdSign(3, 6, 9, playerSign) || checkIdSign(1, 5, 9, playerSign) || checkIdSign(3, 5, 7, playerSign)) {
-        runBot = false;
-        bot(runBot);
-        setTimeout(() => {
-            resultBox.classList.add("show");
-            playBoard.classList.remove("show");
-        }, 700);
-        wonText.innerHTML = `Player <p>${playerSign}</p> won the game!`;
-    } else {
-        if (getIdVal(1) != "" && getIdVal(2) != "" && getIdVal(3) != "" && getIdVal(4) != "" && getIdVal(5) != "" && getIdVal(6) != "" && getIdVal(7) != "" && getIdVal(8) != "" && getIdVal(9) != "") {
-            runBot = false;
-            bot(runBot);
-            setTimeout(() => {
-                resultBox.classList.add("show");
-                playBoard.classList.remove("show");
-            }, 700);
-            wonText.textContent = "Match has been drawn!";
-        }
-    }
-}
-
-replayBtn.onclick = () => {
-    window.location.reload();
-}
+// Botón para reiniciar juego
+restartButton.addEventListener("click", initializeGame);
+cells.forEach(cell => cell.addEventListener("click", handleCellClick));
+initializeGame();
